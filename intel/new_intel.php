@@ -24,6 +24,9 @@
     <input type="submit" value="submit">
     <br>
 </form>
+<br>
+<br>
+<a href="intel_menu.php">Return to Intel Menu<a>
 </html>
 
 <?php

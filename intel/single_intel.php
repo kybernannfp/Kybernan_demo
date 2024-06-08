@@ -34,5 +34,7 @@ if ($id != "") {
     }
 }
 ?>
-
+<br>
+<br>
+<a href="intel_menu.php">Return to Intel Menu<a>
 </html>

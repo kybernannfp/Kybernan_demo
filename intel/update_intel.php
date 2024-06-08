@@ -47,6 +47,9 @@ $output_form = function($id, $title, $publication, $link, $blurb, $goals, $locat
     <br>
     </form>
     <button name="deleteButton" onclick="confirmDelete()">Delete record</button>
+    <br>
+    <br>
+    <a href="intel_menu.php">Return to Intel Menu<a>
     EOF;
 };
 
