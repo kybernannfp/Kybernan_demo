@@ -43,8 +43,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $link = $_POST['link'];
     $location = $_POST['location'];
     $updated = $_POST['updated'];
-$sql = "INSERT INTO `goals`(`state`,`direction`,`current`,`link`,`location`,`updated`) VALUES ('$state','$direction','$current','$link','$location','$updated')";
-$result = $conn->query($sql);
+$sql = "INSERT INTO `goals`(`state`,`direction`,`current`,`link`,`location`,`updated`) VALUES (?,?,?,?,?,?)";
+$params = [$state, $direction, $current, $link, $location, $updated];
+$result = $conn->execute_query($sql, $params);
 if ($result == TRUE) {
 echo "New record created successfully.";
 } else {
