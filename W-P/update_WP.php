@@ -16,7 +16,7 @@
     <h3>Edit Wiki-Praxis Post</h3>
 </header>
 <?php
-require_once '/Applications/XAMPP/xamppfiles/htdocs/demo/login.php';
+require_once(__DIR__.'/../login.php');
 
 $conn = new mysqli($hn, $un, $pw, $db);
 if ($conn->connect_error) die($conn->connect_error);

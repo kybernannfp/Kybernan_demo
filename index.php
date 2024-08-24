@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <link href="style.css" rel='stylesheet'>
+</head>
 <header>
     <h1>KYBERNAN</h1>
     <h2>Main Menu</h2>
 </header>
 
 <?php
-require_once '/Applications/XAMPP/xamppfiles/htdocs/demo/login.php';
+require_once(__DIR__.'/../login.php');
 
 $conn = new mysqli($hn, $un, $pw, $db);
 if ($conn->connect_error) die($conn->connect_error);

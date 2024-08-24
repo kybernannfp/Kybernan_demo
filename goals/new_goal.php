@@ -32,7 +32,7 @@
 </html>
 
 <?php
-require_once '/Applications/XAMPP/xamppfiles/htdocs/demo/login.php';
+require_once(__DIR__.'/../login.php');
 $conn = new mysqli($hn, $un, $pw, $db);
 if ($conn->connect_error) die($conn->connect_error);
 
@@ -43,9 +43,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $link = $_POST['link'];
     $location = $_POST['location'];
     $updated = $_POST['updated'];
-$sql = "INSERT INTO `goals`(`state`,`direction`,`current`,`link`,`location`,`updated`) VALUES (?,?,?,?,?,?)";
-$params = [$state, $direction, $current, $link, $location, $updated];
-$result = $conn->execute_query($sql, $params);
+$sql = "INSERT INTO `goals`(`state`,`direction`,`current`,`link`,`location`,`updated`) VALUES ('$state','$direction','$current','$link','$location','$updated')";
+$result = $conn->execute_query($sql);
 if ($result == TRUE) {
 echo "New record created successfully.";
 } else {
