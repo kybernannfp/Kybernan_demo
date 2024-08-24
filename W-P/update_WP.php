@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html>
+<style>
+    body {background-color: #C0C0C0;}
+</style>
 <script>
     function confirmDelete() {
         if (confirm("Delete this record?")) {

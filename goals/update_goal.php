@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html>
+<style>
+    body {background-color: #C0C0C0;}
+</style>
 <head>
 <script>
   function confirmDelete() {

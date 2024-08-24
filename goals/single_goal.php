@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
-
+<style>
+    body {background-color: #C0C0C0;}
+</style>
 <header>
     <h1>KYBERNAN</h1>
     <h3>Goal Page</h3>
@@ -26,14 +28,80 @@ function intel_results($state, $conn)
 
   if (!$result) die ("Database access failed: " . $conn->error);
 
-  // Construct a nested unordered list for search matches
-  $result_str = "<ul>";
-  while ($row = $result->fetch_assoc()){
-    $result_str = $result_str . "<li>{$row['id']}: {$row['title']}</li>";
-  }
-  $result_str = $result_str . "</ul>";
+    // Construct a nested unordered list for search matches
+    $result_str = "<ul>";
+    $item_counter = 1;
+    while ($row = $result->fetch_assoc()){
+        $item_url = "../intel/single_intel.php?id={$row['id']}";
+        $item_url = "'" . $item_url . "'";
+        $item_title = "{$row['title']}";
 
-  return $result_str;
+        $item = "<li>";
+        $item = $item . "{$item_counter}: ";
+        $item = $item . "<a href={$item_url}>{$item_title}</a>";
+        $item = $item . "</li>";
+        $result_str = $result_str . $item;
+        $item_counter += 1;
+    }
+    $result_str = $result_str . "</ul>";
+
+    return $result_str;
+}
+
+function proposal_results($state, $conn)
+{
+    $wildcard_state = "%$state%";
+    $query = "SELECT id, title FROM proposals WHERE goals LIKE ?";
+    $result = $conn->execute_query($query, [$wildcard_state]);
+
+    if (!$result) die ("Database access failed: " . $conn->error);
+
+    // Construct a nested unordered list for search matches
+    $result_str = "<ul>";
+    $item_counter = 1;
+    while ($row = $result->fetch_assoc()){
+        $item_url = "../proposals/single_proposal.php?id={$row['id']}";
+        $item_url = "'" . $item_url . "'";
+        $item_title = "{$row['title']}";
+
+        $item = "<li>";
+        $item = $item . "{$item_counter}: ";
+        $item = $item . "<a href={$item_url}>{$item_title}</a>";
+        $item = $item . "</li>";
+        $result_str = $result_str . $item;
+        $item_counter += 1;
+    }
+    $result_str = $result_str . "</ul>";
+
+    return $result_str;
+}
+
+function project_results($state, $conn)
+{
+    $wildcard_state = "%$state%";
+    $query = "SELECT id, title FROM projects WHERE goals LIKE ?";
+    $result = $conn->execute_query($query, [$wildcard_state]);
+
+    if (!$result) die ("Database access failed: " . $conn->error);
+
+    // Construct a nested unordered list for search matches
+    $result_str = "<ul>";
+    $item_counter = 1;
+    while ($row = $result->fetch_assoc()){
+        $item_url = "../projects/single_project.php?id={$row['id']}";
+        $item_url = "'" . $item_url . "'";
+        $item_title = "{$row['title']}";
+
+        $item = "<li>";
+        $item = $item . "{$item_counter}: ";
+        $item = $item . "<a href={$item_url}>{$item_title}</a>";
+        $item = $item . "</li>";
+        $result_str = $result_str . $item;
+        $item_counter += 1;
+    }
+    $result_str = $result_str . "</ul>";
+
+    return $result_str;
 }
 
 $conn = new mysqli($hn, $un, $pw, $db);
@@ -62,7 +130,9 @@ if ($id != "") {
         <li>Source: $row[3]</li>
         <li>Geographic Scope: $row[4]</li>
         <li>Last Updated: $row[5]</li>
-        <li>Related intel: {$heredoc(intel_results($state, $conn))}</li>
+        <li>Related Intel: {$heredoc(intel_results($state, $conn))}</li>
+        <li>Related Proposals: {$heredoc(proposal_results($state, $conn))}</li>
+        <li>Related Projects: {$heredoc(project_results($state, $conn))}</li>
         </ul>
         END;
     }

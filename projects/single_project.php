@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
-
+<style>
+    body {background-color: #C0C0C0;}
+</style>
 <header>
     <h1>KYBERNAN</h1>
     <h3>Project Page</h3>
