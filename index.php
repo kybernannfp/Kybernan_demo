@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <link href="style.css" rel='stylesheet'>
-</head>
+<style>
+    body {background-color: #C0C0C0;}
+</style>
 <header>
     <h1>KYBERNAN</h1>
     <h2>Main Menu</h2>
@@ -15,7 +15,9 @@ $conn = new mysqli($hn, $un, $pw, $db);
 if ($conn->connect_error) die($conn->connect_error);
 
 ?>
-
+<a href="demo_guide.php">Demo Guide</a>
+<br>
+<br>
 <a href="goals/goal_menu.php">GOALS</a>
 <br>
 <a href="intel/intel_menu.php">INTEL</a>
